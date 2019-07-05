@@ -59,9 +59,9 @@ describe('Use with CacheStore', function() {
 
   describe('#put', function() {
     it('should work with buffers', function() {
-      return expect(cfs.hasContent(new Buffer('hello, world!')))
+      return expect(cfs.hasContent(Buffer.from('hello, world!')))
         .to.eventually.equal(false)
-        .then(() => cfs.put(new Buffer('hello, world!'), '.txt'))
+        .then(() => cfs.put(Buffer.from('hello, world!'), '.txt'))
         .tap(info => expect(cfs.has(info)).to.eventually.equal(true))
         .then(info => cfs.readFile(info))
         .then(function(buf) {
@@ -93,7 +93,7 @@ describe('Use with CacheStore', function() {
 
     it('should correctly handle files with same content', function() {
       return cfs
-        .put(new Buffer('hello, world!'), '.txt')
+        .put(Buffer.from('hello, world!'), '.txt')
         .bind({})
         .then(function(info1) {
           this.info1 = info1;
@@ -104,7 +104,7 @@ describe('Use with CacheStore', function() {
         .then(function(buf) {
           expect(buf.toString('utf-8')).to.equal('hello, world!');
 
-          return cfs.put(new Buffer('hello, world!'), '.txt');
+          return cfs.put(Buffer.from('hello, world!'), '.txt');
         })
         .then(function(info2) {
           this.info2 = info2;
@@ -127,25 +127,25 @@ describe('Use with CacheStore', function() {
       const ds = _.repeat('d', 46066);
 
       return cfs
-        .put(new Buffer(as), '.txt')
+        .put(Buffer.from(as), '.txt')
         .bind({})
         .then(function(info) {
           this.aInfo = info;
 
           expect(directoryStore.unlink).to.not.have.been.called;
-          return cfs.put(new Buffer(bs), '.txt');
+          return cfs.put(Buffer.from(bs), '.txt');
         })
         .then(function(info) {
           this.bInfo = info;
 
           expect(directoryStore.unlink).to.not.have.been.called;
-          return cfs.put(new Buffer(cs), '.txt');
+          return cfs.put(Buffer.from(cs), '.txt');
         })
         .then(function(info) {
           this.cInfo = info;
 
           expect(directoryStore.unlink).to.not.have.been.called;
-          return cfs.put(new Buffer(ds), '.txt');
+          return cfs.put(Buffer.from(ds), '.txt');
         })
         .then(function(info) {
           this.dInfo = info;
@@ -165,7 +165,7 @@ describe('Use with CacheStore', function() {
   describe('#unlink', function() {
     it('should remove a file', function() {
       return cfs
-        .put(new Buffer('hello, world!'), '.txt')
+        .put(Buffer.from('hello, world!'), '.txt')
         .bind({})
         .then(function(info) {
           this.info = info;
