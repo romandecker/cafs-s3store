@@ -1,6 +1,6 @@
 {
   "name": "cafs-s3store",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An S3-based backend for the cafs-module",
   "main": "index.js",
   "scripts": {
