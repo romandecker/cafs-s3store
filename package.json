@@ -1,6 +1,6 @@
 {
   "name": "cafs-s3store",
-  "version": "0.2.0",
+  "version": "0.0.5",
   "description": "An S3-based backend for the cafs-module",
   "main": "index.js",
   "scripts": {
@@ -15,9 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.5",
-    "cafs": "^1.0.0",
+    "cafs": "^1.0.2",
     "debug": "^4.1.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "s3-upload-stream": "^1.0.7"
   },
   "peerDependencies": {
